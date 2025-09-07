@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Browse Movies</title>
+
+        <!-- Link Inter Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+        <!-- Link Font Awesome CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />        
+        
+        <!-- Link stylesheet -->
+        <link href="./css/style.css" rel="stylesheet">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <main>
+            <section class="hero-section">
+                <div class="container">
+                    <h1>Find your film</h1>
+                    <a href="./watchlist.html">My Watchlist</a>
+                </div>
+            </section>
+            
+            <search class="search-el">
+                <form id="movies-search-form" class="search-form">
+                    <div class="container">
+                        <i class="fa-solid fa-magnifying-glass gray-icon"></i>
+                        <input
+                            type="text"
+                            name="movie-title-searched"
+                            class="search-input"
+                            placeholder="Search for a movie"
+                            required
+                        >
+                        <button type="submit" class="search-btn">Search</button>
+                    </div>
+                </form>
+            </search>
+
+            <section class="movies-section" id="movies-section" aria-live="polite">
+                <div class="container no-movies-container">
+                    <i class="fa-solid fa-film movie-icon"></i>
+                    <p>Start Exploring</p>
+                </div>
+            </section>
+
+            <button class="hidden" id="scroll-to-top-btn" aria-label="Scroll to top.">
+                <i class="fa-solid fa-chevron-up"></i>
+            </button>
+        </main>
+
+        <script src="./scripts/index.js" type="module"></script>
+    </body>
+</html>

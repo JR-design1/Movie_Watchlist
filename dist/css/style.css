@@ -1,0 +1,342 @@
+/************************************
+----------General Styling------------
+************************************/
+*, *::before, *::after{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Inter", sans-serif;
+    color: #DFDDDD;
+    font-size: 0.75rem;
+}
+
+.container{
+    width: 84%;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+button{
+    cursor: pointer;
+    font-family: inherit;
+}
+
+button:disabled{
+    cursor: not-allowed;
+}
+
+h1{
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+
+hr{
+    border: none;
+    border-top: 1.5px solid #E5E7EB;
+}
+
+.hidden{
+    display: none;
+}
+
+/*************************************
+-------Hero Section Styling-----------
+*************************************/
+.hero-section{
+    background-color: rgba(5,5,5, 0.8);
+    background-image: url("../images/hero.png");
+    background-position: left 0 top 24%;
+    background-size: cover;
+    background-blend-mode: overlay;
+    color: white;
+    height: 38vw;
+    max-height: 50vh;
+    min-height: 175px;
+}
+
+.hero-section a{
+    color: inherit;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.hero-section .container{
+    height: 100%;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: auto auto;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*************************************
+----------Search Bar Styling----------
+*************************************/
+.search-el,
+.gray-icon{
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+.search-el{
+    width: 100%;
+}
+
+.gray-icon{
+    color: #9CA3AF;
+    top: 50%;
+    left: 1.07em;
+    font-size: 0.875rem;
+}
+
+.search-form .container{
+    display: flex;
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+#movies-search-form .container{
+    position: relative;
+}
+
+.search-form button,
+.search-form input{
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid #D1D5DB;
+}
+
+.search-btn{
+    border-radius: 0 6px 6px 0;
+    width: calc(100% - 74%);
+    padding: 0.64em 0.14em;
+    background-color: #F9FAFB;
+    color: #374151;
+}
+
+.search-input{
+    width: 74%;
+    padding: 0.64em 0.57em 0.64em 2.93em;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    color: #6B7280;
+}
+
+
+/***************************************
+---------Main Section Styling-----------
+***************************************/
+.no-movies-container{
+    min-height: calc(100vh - 50vh);
+    max-height: calc(100vh - 175px);
+    height: calc(100vh - 38vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.movies-container{
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 3.94rem;
+    margin-bottom: 2.75rem;
+}
+
+.movie-icon{
+    font-size: 4.375rem;
+}
+
+.movie-article{
+    max-width: calc(550px * 0.84);
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+    "image image image"
+    "title title title"
+    "runti categ modif"
+    "descr descr descr";
+    align-items: center;
+    justify-self: center;
+    color: #111827;
+}
+
+.movie-img{
+    grid-area: image;
+    width: 99px;
+    height: 147.41px;
+    outline: 1px solid black;
+    justify-self: center;
+}
+
+.movie-title-container{
+    grid-area: title;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-self: center;
+}
+
+.movie-title{
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: black;
+}
+
+.movie-rating{
+    display: flex;
+    gap: 0.25rem;
+}
+
+.movie-rating>i{
+    color: #FEC654;
+}
+
+.movie-rating>p{
+    font-size: 0.75rem;
+}
+
+.movie-runtime,
+.movie-category,
+.modify-watchlist>p{
+    font-size: 0.86em;
+}
+
+.movie-runtime{
+    grid-area: runti;
+    margin-left: 25px;
+}
+
+.movie-category{
+    grid-area: categ;
+    justify-self: center;
+}
+
+.modify-watchlist,
+.home-link{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 0;
+    border: none;
+    background-color: white;
+    font-size: 1em;
+}
+
+.modify-watchlist{
+    grid-area: modif;
+    margin-right: 25px;
+}
+
+.home-link{
+    color: #363636;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.movie-description{
+    grid-area: descr;
+    color: #6B7280
+}
+
+.show-more-btn{
+    justify-self: center;
+    background-color: #E5E7EB;
+    border: none;
+    padding: 8px 10px;
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.modify-txt-btn{
+    padding: 0;
+    display: inline;
+    border: none;
+    background-color: white;
+    color: #272727;
+    font-size: 0.75rem;
+}
+
+#scroll-to-top-btn{
+    position: fixed;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    border-radius: 50%;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: #272727;
+    border: none;
+    animation: fade-in 1s forwards;
+}
+
+#scroll-to-top-btn i{
+    color: #fff;
+}
+
+#scroll-to-top-btn.animation-fade-out{
+    animation: fade-out 1s forwards;
+    pointer-events: none;
+    cursor: none;
+}
+
+@keyframes fade-in{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out{
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+/************************************ 
+-----------Media Query---------------
+************************************/
+@media(min-width: 500px){
+    h1{
+        font-size: 2.67rem;
+    }
+
+    body{
+        font-size: 0.875rem;
+    }
+
+    .movie-img{
+        margin-right: calc(1.25em - 0.5em);
+    }
+
+    .movie-img,
+    .movie-title-container{
+        justify-self: unset;
+    }
+
+    .movie-runtime{
+        margin: 0;
+    }
+
+    .modify-watchlist{
+        margin-right: 2.85rem;
+    }
+
+    .movie-article{
+        gap: 0.5rem;
+        grid-template-columns: auto auto 1fr auto;
+        grid-template-areas:
+        "image title title title"
+        "image runti categ modif"
+        "image descr descr descr";
+    }
+}

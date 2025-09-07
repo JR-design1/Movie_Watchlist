@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Watchlist</title>
+
+        <!-- Link Inter Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+        <!-- Link Font Awesome CDN -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />  
+        
+        <!-- Link Stylesheet -->
+        <link rel="stylesheet" href="./css/style.css">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <main>
+            <section class="hero-section">
+                <div class="container">
+                    <h1>My Watchlist</h1>
+                    <a href="./index.html">Search for Movies</a>
+                </div>
+            </section>
+
+            <section class="movies-section" id="movies-section" aria-live="polite"></section>
+        </main>
+
+        <button class="hidden" id="scroll-to-top-btn" aria-label="Scroll to top.">
+            <i class="fa-solid fa-chevron-up"></i>
+        </button>
+
+        <script src="./scripts/watchlist.js" type="module"></script>
+    </body>
+</html>

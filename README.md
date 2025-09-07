@@ -1,0 +1,2 @@
+## About This Project
+This project is a website to search for movies and keep track of the movies the user would like to watch. It searches through movies through the Open Movie Database API. <a href="https://www.omdbapi.com/">Click here to learn more about the Open Movie Database API.</a> Users search for movies and add movies to their watchlist on the index.html page, and users view movies they added to their watchlist on the watchlist.html page. Users can also remove movies from their watchlist on the watchlist.html page.
