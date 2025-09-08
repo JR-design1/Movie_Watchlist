@@ -21,6 +21,7 @@ let nextPageMovieSearch;
 let movieDescriptions = []
 
 let maxPages = 1
+let isErrorRenderMovies = false
 
 window.addEventListener('scroll', ()=>{
     scrollBtnToggle(scrollToTopBtn)
@@ -139,10 +140,11 @@ function addMovieToWatchList(movieId){
 function renderMoreMovies(moviesArr){
     getMoviesHtml(moviesArr)
         .then(moviesHtml=>{
-            if(nextPageMovieSearch.page <= maxPages){
+            if(nextPageMovieSearch.page <= maxPages && !isErrorRenderMovies){
                 moviesHtml += getShowMoreBtnHtml()
-                moviesSection.children[0].innerHTML += moviesHtml
             }
+            
+            moviesSection.children[0].innerHTML += moviesHtml
         })
 }
 
@@ -164,6 +166,8 @@ movieSearchForm.addEventListener('submit', searchForMovies)
  */
 function searchForMovies(e){
     e.preventDefault()
+
+    isErrorRenderMovies = false
 
     const movieSearchFormData = new FormData(movieSearchForm)
     const movieTitleSearched = movieSearchFormData.get('movie-title-searched')
@@ -189,7 +193,11 @@ function searchForMovies(e){
 
                 renderFirstMovies(data.Search)
                     .then(()=>{
-                        moviesSection.children[0].innerHTML += getShowMoreBtnHtml()
+                        if(moviesSection.children[0].innerText !== 'Error: Can not get movies at the moment.'
+                            && nextPageMovieSearch.page !== 1
+                        ){
+                            moviesSection.children[0].innerHTML += getShowMoreBtnHtml()
+                        }
                     })
             }
             else{
@@ -212,7 +220,16 @@ function searchForMovies(e){
  */
 function getSearchResults(searchObj){
     return fetch(`/.netlify/functions/script/?s=${searchObj.titleSearched}&page=${searchObj.page}`)
-        .then(response => response.json())
+        .then(response => {
+            if(response.ok){
+                return response.json()
+            }
+            else {
+                return{
+                    Error: "Could not get movies at the moment."
+                }
+            }
+        })
 }
 
 
@@ -230,8 +247,14 @@ function renderFirstMovies(moviesArr){
     const promise = getMoviesHtml(moviesArr)
 
     return promise.then(moviesHtml=>{
-        div.innerHTML = moviesHtml
-        moviesSection.append(div)
+        if(moviesHtml === ''){
+            renderMessage(moviesSection, "<p>Error: Can not get movies at the moment.</p>")
+        }
+
+        else{
+            div.innerHTML = moviesHtml
+            moviesSection.append(div)
+        }
     })
 }
 
@@ -245,7 +268,14 @@ function getMoviesHtml(moviesArr){
     let moviesHtml = ''
     const allPromises = moviesArr.map((movie)=>{
         return fetch(`/.netlify/functions/script/?i=${movie.imdbID}`)
-        .then(response=>response.json())
+        .then(response=>{
+            if(response.ok){
+                return response.json()
+            }
+            else{
+                throw "Could not get movies at the moment."
+            }
+        })
         .then(movieData=>{
             const id = movieData.imdbID
             if(movieDescriptions.filter(movieDescription=>movieDescription.id===id).length===0){
@@ -268,6 +298,15 @@ function getMoviesHtml(moviesArr){
                     movieData.Poster, id, movieData.Title, movieData.imdbRating,
                     movieData.Runtime, movieData.Genre, movieData.Plot, modifyWatchListBtn
                 )
+            }
+        })
+        .catch(()=>{
+            moviesHtml = moviesHtml
+            if(nextPageMovieSearch.page === 2){
+                nextPageMovieSearch.page = 1
+            }
+            else{
+                isErrorRenderMovies = true
             }
         })
     })
